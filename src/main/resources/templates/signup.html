@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>회원가입 페이지</title>
+    <script>
+        function signup() {
+            let username = $('#username').val();
+            let password = $('#password').val();
+            let passwordCheck = $('#passwordCheck').val();
+            let data = {'username': username, 'password':password, 'passwordCheck':passwordCheck};
+
+            $.ajax({
+                type: "POST",
+                url: '/user/signup',
+                contentType: "application/json",
+                data: JSON.stringify(data),
+                success: function (response) {
+                    alert(response);
+                    location.replace("/user/loginView")
+                }
+            })
+        }
+    </script>
+</head>
+<body>
+<div id="login-form">
+    <div id="login-title">Sign up My blog</div>
+
+
+    <div class="login-id-label">Username</div>
+    <input id="username" type="text" placeholder="Username" class="login-input-box">
+
+    <div class="login-id-label">Password</div>
+    <input id="password" type="password"  class="login-input-box">
+
+    <div class="login-id-label">Password-Check</div>
+    <input id="passwordCheck" type="password"  class="login-input-box">
+
+    <button id="login-id-submit" onclick="signup()">회원 가입</button>
+
+</div>
+</body>
+</html>
